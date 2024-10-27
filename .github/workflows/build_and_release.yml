@@ -16,7 +16,9 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v2
         with:
-          java-version: '11'  # 根据你的项目设置适当的 Java 版本
+          java-version: '11'
+          distribution: 'temurin'  # 添加 distribution 参数
+          
 
       - name: Build APK
         run: ./gradlew assembleRelease  # 根据你的项目配置调整命令
