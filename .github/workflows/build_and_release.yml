@@ -2,7 +2,8 @@ name: Build and Release APK
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天早上两点 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # 添加这一行以支持手动触发
 
 jobs:
   build:
