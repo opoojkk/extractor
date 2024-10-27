@@ -26,7 +26,34 @@ androidx-benchmark-common = { group = "androidx.benchmark", name = "benchmark-co
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
+#rikka-refine-annotation = { module = "dev.rikka.tools.refine:annotation", version.ref = "hiddenApiRefine" }
+#rikka-refine-compiler = { module = "dev.rikka.tools.refine:annotation-processor", version.ref = "hiddenApiRefine" }
+#rikka-refine-runtime = { module = "dev.rikka.tools.refine:runtime", version.ref = "hiddenApiRefine" }
+rikkax-appcompat = "dev.rikka.rikkax.appcompat:appcompat:1.6.1"
+rikkax-borderview = "dev.rikka.rikkax.widget:borderview:1.1.0"
+rikkax-core = "dev.rikka.rikkax.core:core:1.4.1"
+rikkax-insets = "dev.rikka.rikkax.insets:insets:1.3.0"
+rikkax-layoutinflater = "dev.rikka.rikkax.layoutinflater:layoutinflater:1.3.0"
+rikkax-material = "dev.rikka.rikkax.material:material:2.7.2"
+rikkax-material-preference = "dev.rikka.rikkax.material:material-preference:2.0.0"
+rikkax-recyclerview = "dev.rikka.rikkax.recyclerview:recyclerview-ktx:1.3.2"
+rikkax-simplemenu-preference = "dev.rikka.rikkax.preference:simplemenu-preference:1.0.3"
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
+
+
+[bundles]
+rikkax = [
+    "rikkax-core",
+    "rikkax-insets",
+    "rikkax-material",
+    "rikkax-borderview",
+    "rikkax-appcompat",
+    "rikkax-layoutinflater",
+    "rikkax-recyclerview",
+    "rikkax-simplemenu-preference",
+    "rikkax-material-preference"
+]
