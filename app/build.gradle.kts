@@ -1,7 +1,21 @@
+import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
+import java.io.FileInputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
+
+val keystorePropertiesFile = rootProject.file("./extractor-key/keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+val keystoreProperties = Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 android {
     namespace = "com.joykeepsflowin.extractor"
@@ -17,9 +31,41 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    applicationVariants.all {
+        outputs.all {
+            val ver = defaultConfig.versionName
+            // 获取当前日期并格式化为 "yyyyMMdd"
+            val date = SimpleDateFormat("yyyyMMdd-HHmmss").format(Date())
+            val abi = filters.find { it.filterType == "ABI" }?.identifier ?: "all"
+            (this as com.android.build.gradle.internal.api.BaseVariantOutputImpl).outputFileName =
+                "${project.name}-$ver-${abi}-$date.apk";
+        }
+    }
+    signingConfigs {
+        configureEach {
+            keyAlias = keystoreProperties["keyAlias"].toString()
+            keyPassword = keystoreProperties["keyPassword"].toString()
+            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+            storePassword = keystoreProperties["storePassword"].toString()
+        }
+    }
+
     buildTypes {
+        debug {
+            isMinifyEnabled = true
+            isDebuggable = true
+            isShrinkResources = true
+            signingConfig = signingConfigs.first()
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isDebuggable = false
+            isShrinkResources = true
+            signingConfig = signingConfigs.first()
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -32,9 +78,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-    viewBinding {
-        enable = true
     }
     buildFeatures {
         viewBinding = true
