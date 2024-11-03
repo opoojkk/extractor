@@ -5,4 +5,9 @@
     <string name="btn_extractor_dialog_positive">确定</string>
     <string name="title_dialog_extractor">提示</string>
     <string name="content_extractor_dialog">确定提取吗?</string>
+    <string name="title_home_option_menu_filter">筛选</string>
+    <string name="title_home_option_menu_settings">设置</string>
+    <string name="title_home_popup_user">用户</string>
+    <string name="title_home_popup_system">系统</string>
+    <string name="title_home_popup_all">全部</string>
 </resources>

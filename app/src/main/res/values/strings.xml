@@ -4,5 +4,10 @@
     <string name="btn_extractor_dialog_positive">ok</string>
     <string name="title_dialog_extractor">Hint</string>
     <string name="content_extractor_dialog">Are you sure you want to extract?</string>
+    <string name="title_home_option_menu_filter">filter</string>
+    <string name="title_home_option_menu_settings">settings</string>
+    <string name="title_home_popup_user">user</string>
+    <string name="title_home_popup_system">system</string>
+    <string name="title_home_popup_all">all</string>
     <!-- Strings used for fragments for navigation -->
 </resources>

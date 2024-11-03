@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "extractor"
 include(":app")
+include(":lib_kv")

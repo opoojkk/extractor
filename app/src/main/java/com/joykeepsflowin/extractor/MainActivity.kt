@@ -1,14 +1,21 @@
 package com.joykeepsflowin.extractor
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.forEachIndexed
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.joykeepsflowin.extractor.bean.getInstalledApps
+import com.joykeepsflowin.extractor.appinfo.InstalledAppInfoAdapter
 import com.joykeepsflowin.extractor.databinding.ActivityMainBinding
+import com.joykeepsflowin.extractor.kt.getInstalledApps
 import com.joykeepsflowin.extractor.kt.transparentNavigationBar
+import com.joykeepsflowin.lib_kv.Prefs
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
@@ -26,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(mainBinding.toolbar)
         supportActionBar?.title = resources.getString(R.string.app_name)
 
-        val appInfos = getInstalledApps(false)
+        val appInfos = getInstalledApps(Prefs.get().getInt("filter_app_list_mode", 0) ?: 0)
         mainBinding.rvInstalledApp.apply {
             adapter = InstalledAppInfoAdapter(appInfos)
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -34,5 +41,62 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menu?.let {
+            menuInflater.inflate(R.menu.home_right_top_settings, it)
+            return true
+        }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.home_right_top_filter -> {
+                showFilterPopupMenu()
+                true
+            }
+
+            R.menu.home_right_top_settings -> {
+                Toast.makeText(this, "not implement yet", Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showFilterPopupMenu() {
+        val popupMenu = PopupMenu(this, findViewById(R.id.home_right_top_filter))
+        popupMenu.menuInflater.inflate(R.menu.home_right_top_popup, popupMenu.menu) // 另一个菜单的 XML 文件
+        val selected = Prefs.get().getInt("filter_app_list_mode", 0) ?: 0
+        popupMenu.menu.forEachIndexed { index, item ->
+            if (index == selected) {
+                item.isChecked = true
+            }
+        }
+
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.home_popup_user -> {
+                    Prefs.get().putInt("filter_app_list_mode", 0)
+                    true
+                }
+
+                R.id.home_popup_system -> {
+                    Prefs.get().putInt("filter_app_list_mode", 1)
+                    true
+                }
+
+                R.id.home_popup_all -> {
+                    Prefs.get().putInt("filter_app_list_mode", 2)
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        popupMenu.show()
+    }
 
 }

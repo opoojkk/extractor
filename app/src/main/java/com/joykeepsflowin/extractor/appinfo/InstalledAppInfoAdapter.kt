@@ -1,4 +1,4 @@
-package com.joykeepsflowin.extractor
+package com.joykeepsflowin.extractor.appinfo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.joykeepsflowin.extractor.bean.AppInfo
+import com.joykeepsflowin.extractor.R
+import com.joykeepsflowin.extractor.appinfo.bean.AppInfo
 import com.joykeepsflowin.extractor.databinding.ItemInstalledAppBinding
 import com.joykeepsflowin.extractor.kt.click
+import com.joykeepsflowin.extractor.kt.extractInstalledAppApk
 import java.io.File
 
 class InstalledAppInfoAdapter(private val appList: List<AppInfo>) :
@@ -38,7 +40,7 @@ class InstalledAppInfoAdapter(private val appList: List<AppInfo>) :
                     val context = holder.itemView.context
                     val path =
                         context.filesDir.absolutePath + File.separator + app.appName + "_${System.currentTimeMillis()}.apk"
-                    val result = extractInstalledAppApk(context, app.packageName, path)
+                    val result = context.extractInstalledAppApk(app.packageName, path)
                     if (!result.isNullOrEmpty()) {
                         Toast.makeText(context, "success, path:$result", Toast.LENGTH_SHORT).show()
                     }

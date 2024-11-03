@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/tv_app_name"
-        style="@style/TextView.SansSerifCondensedMedium"
+        style="@style/TextView.SansSerifCondensed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"

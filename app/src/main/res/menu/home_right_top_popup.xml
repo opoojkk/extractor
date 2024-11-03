@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home_popup_user"
+            android:title="@string/title_home_popup_user"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/home_popup_system"
+            android:title="@string/title_home_popup_system"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/home_popup_all"
+            android:title="@string/title_home_popup_all"
+            app:showAsAction="always" />
+    </group>
+</menu>
