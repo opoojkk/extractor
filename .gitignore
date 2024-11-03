@@ -89,4 +89,3 @@ app/.settings/org.eclipse.buildship.core.prefs
 
 # Kotlin 2.0
 .kotlin/sessions/*
-/extractor-key/
