@@ -1,4 +1,4 @@
-package com.joykeepsflowin.extractor
+package com.joykeepsflowin.extractor.bean
 
 import android.content.Context
 import android.content.pm.ApplicationInfo

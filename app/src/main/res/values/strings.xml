@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">apk extractor</string>
+    <string name="btn_extractor_dialog_negative">cancel</string>
+    <string name="btn_extractor_dialog_positive">ok</string>
+    <string name="title_dialog_extractor">Hint</string>
+    <string name="content_extractor_dialog">Are you sure you want to extract?</string>
     <!-- Strings used for fragments for navigation -->
 </resources>

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">apk提取器</string>
+    <string name="btn_extractor_dialog_negative">取消</string>
+    <string name="btn_extractor_dialog_positive">确定</string>
+    <string name="title_dialog_extractor">提示</string>
+    <string name="content_extractor_dialog">确定提取吗?</string>
 </resources>

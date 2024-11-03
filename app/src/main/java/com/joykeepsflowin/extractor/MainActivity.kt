@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.joykeepsflowin.extractor.bean.getInstalledApps
 import com.joykeepsflowin.extractor.databinding.ActivityMainBinding
+import com.joykeepsflowin.extractor.kt.transparentNavigationBar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
