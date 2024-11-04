@@ -1,6 +1,7 @@
 package com.joykeepsflowin.extractor
 
 import android.app.Application
+import com.joykeepsflowin.extractor.home.appinfo.InstalledAppManager
 import com.joykeepsflowin.lib_kv.Prefs
 
 class App : Application() {
@@ -10,6 +11,7 @@ class App : Application() {
     }
 
     private fun initComponents() {
+        InstalledAppManager.init(this)
         Prefs.init(this, object : Prefs.Config() {})
     }
 }

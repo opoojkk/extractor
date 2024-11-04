@@ -1,4 +1,4 @@
-package com.joykeepsflowin.extractor
+package com.joykeepsflowin.extractor.home
 
 import android.os.Bundle
 import android.view.Menu
@@ -6,22 +6,47 @@ import android.view.MenuItem
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.forEachIndexed
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.joykeepsflowin.extractor.appinfo.InstalledAppInfoAdapter
+import com.joykeepsflowin.extractor.R
 import com.joykeepsflowin.extractor.databinding.ActivityMainBinding
-import com.joykeepsflowin.extractor.kt.getInstalledApps
+import com.joykeepsflowin.extractor.home.appinfo.InstalledAppInfoAdapter
+import com.joykeepsflowin.extractor.home.appinfo.InstalledAppManager
 import com.joykeepsflowin.extractor.kt.transparentNavigationBar
 import com.joykeepsflowin.lib_kv.Prefs
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mainBinding: ActivityMainBinding
+    private val appInfoViewModel: AppInfoViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        initViews()
+        initData()
+    }
+
+    private fun initData() {
+        val appInfos = InstalledAppManager.get(Prefs.get().getInt("filter_app_list_mode", 0) ?: 0)
+        mainBinding.rvInstalledApp.apply {
+            adapter = InstalledAppInfoAdapter(appInfos.toMutableList())
+            layoutManager = LinearLayoutManager(this@MainActivity)
+        }
+
+        appInfoViewModel.observeFilterAppListMode(this)
+        appInfoViewModel.filterAppList.observe(this) { value ->
+            mainBinding.rvInstalledApp.apply {
+                adapter = InstalledAppInfoAdapter(value.toMutableList())
+                invalidate()
+            }
+        }
+    }
+
+    private fun initViews() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainBinding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -32,14 +57,8 @@ class MainActivity : AppCompatActivity() {
         window.transparentNavigationBar()
         setSupportActionBar(mainBinding.toolbar)
         supportActionBar?.title = resources.getString(R.string.app_name)
-
-        val appInfos = getInstalledApps(Prefs.get().getInt("filter_app_list_mode", 0) ?: 0)
-        mainBinding.rvInstalledApp.apply {
-            adapter = InstalledAppInfoAdapter(appInfos)
-            layoutManager = LinearLayoutManager(this@MainActivity)
-        }
-
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menu?.let {
@@ -79,16 +98,19 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.home_popup_user -> {
                     Prefs.get().putInt("filter_app_list_mode", 0)
+                    appInfoViewModel.postFilterAppListModeValue(0)
                     true
                 }
 
                 R.id.home_popup_system -> {
                     Prefs.get().putInt("filter_app_list_mode", 1)
+                    appInfoViewModel.postFilterAppListModeValue(1)
                     true
                 }
 
                 R.id.home_popup_all -> {
                     Prefs.get().putInt("filter_app_list_mode", 2)
+                    appInfoViewModel.postFilterAppListModeValue(2)
                     true
                 }
 

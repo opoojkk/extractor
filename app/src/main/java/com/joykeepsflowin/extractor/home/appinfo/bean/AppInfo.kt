@@ -1,4 +1,4 @@
-package com.joykeepsflowin.extractor.appinfo.bean
+package com.joykeepsflowin.extractor.home.appinfo.bean
 
 import android.graphics.drawable.Drawable
 

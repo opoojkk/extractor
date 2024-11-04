@@ -1,4 +1,4 @@
-package com.joykeepsflowin.extractor.appinfo
+package com.joykeepsflowin.extractor.home.appinfo
 
 enum class InstalledAppMode(val value: Int) {
     USER(0),
