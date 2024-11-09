@@ -9,5 +9,7 @@
     <string name="title_home_popup_user">user</string>
     <string name="title_home_popup_system">system</string>
     <string name="title_home_popup_all">all</string>
+    <string name="title_settings">settings</string>
+    <string name="label_settings_hint_extractor">Confirm before extracting</string>
     <!-- Strings used for fragments for navigation -->
 </resources>

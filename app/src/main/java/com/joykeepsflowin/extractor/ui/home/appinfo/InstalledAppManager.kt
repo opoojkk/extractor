@@ -1,9 +1,9 @@
-package com.joykeepsflowin.extractor.home.appinfo
+package com.joykeepsflowin.extractor.ui.home.appinfo
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import com.joykeepsflowin.extractor.home.appinfo.bean.AppInfo
+import com.joykeepsflowin.extractor.ui.home.appinfo.bean.AppInfo
 
 object InstalledAppManager {
     private val userAppInfoList = mutableListOf<AppInfo>()

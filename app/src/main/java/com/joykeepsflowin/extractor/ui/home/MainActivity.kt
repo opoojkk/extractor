@@ -1,19 +1,20 @@
-package com.joykeepsflowin.extractor.home
+package com.joykeepsflowin.extractor.ui.home
 
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.forEachIndexed
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.joykeepsflowin.extractor.R
 import com.joykeepsflowin.extractor.databinding.ActivityMainBinding
-import com.joykeepsflowin.extractor.home.appinfo.InstalledAppInfoAdapter
-import com.joykeepsflowin.extractor.home.appinfo.InstalledAppManager
+import com.joykeepsflowin.extractor.ui.home.appinfo.InstalledAppInfoAdapter
+import com.joykeepsflowin.extractor.ui.home.appinfo.InstalledAppManager
+import com.joykeepsflowin.extractor.kt.startActivity
 import com.joykeepsflowin.extractor.kt.transparentNavigationBar
 import com.joykeepsflowin.extractor.mvvm.MvvmActivity
+import com.joykeepsflowin.extractor.ui.settings.SettingsActivity
 import com.joykeepsflowin.lib_kv.Prefs
 
 class MainActivity : MvvmActivity<ActivityMainBinding, AppInfoViewModel>() {
@@ -63,8 +64,8 @@ class MainActivity : MvvmActivity<ActivityMainBinding, AppInfoViewModel>() {
                 true
             }
 
-            R.menu.home_right_top_settings -> {
-                Toast.makeText(this, "not implement yet", Toast.LENGTH_SHORT).show()
+            R.id.home_right_top_settings -> {
+                startActivity<SettingsActivity>()
                 true
             }
 

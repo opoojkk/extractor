@@ -1,4 +1,4 @@
-package com.joykeepsflowin.extractor.home.appinfo
+package com.joykeepsflowin.extractor.ui.home.appinfo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.joykeepsflowin.extractor.R
 import com.joykeepsflowin.extractor.databinding.ItemInstalledAppBinding
-import com.joykeepsflowin.extractor.home.appinfo.bean.AppInfo
+import com.joykeepsflowin.extractor.ui.home.appinfo.bean.AppInfo
 import com.joykeepsflowin.extractor.kt.click
 import com.joykeepsflowin.extractor.kt.extractInstalledAppApk
 import java.io.File

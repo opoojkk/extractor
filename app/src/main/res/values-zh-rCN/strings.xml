@@ -10,4 +10,6 @@
     <string name="title_home_popup_user">用户</string>
     <string name="title_home_popup_system">系统</string>
     <string name="title_home_popup_all">全部</string>
+    <string name="title_settings">设置</string>
+    <string name="label_settings_hint_extractor">提取前确认</string>
 </resources>

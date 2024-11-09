@@ -18,10 +18,10 @@
         android:theme="@style/Theme.Extractor"
         tools:targetApi="31">
         <activity
-            android:name=".setitngs.SettingsActivity"
+            android:name=".ui.settings.SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".home.MainActivity"
+            android:name=".ui.home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

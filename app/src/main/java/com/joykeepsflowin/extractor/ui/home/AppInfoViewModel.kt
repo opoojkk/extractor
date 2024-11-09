@@ -1,11 +1,11 @@
-package com.joykeepsflowin.extractor.home
+package com.joykeepsflowin.extractor.ui.home
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.joykeepsflowin.extractor.home.appinfo.InstalledAppManager
-import com.joykeepsflowin.extractor.home.appinfo.bean.AppInfo
+import com.joykeepsflowin.extractor.ui.home.appinfo.InstalledAppManager
+import com.joykeepsflowin.extractor.ui.home.appinfo.bean.AppInfo
 
 class AppInfoViewModel : ViewModel() {
     private val _filterAppListMode = MutableLiveData<Int>()

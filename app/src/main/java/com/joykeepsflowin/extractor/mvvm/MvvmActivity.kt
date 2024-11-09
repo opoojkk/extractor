@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.joykeepsflowin.extractor.R
 import java.lang.reflect.ParameterizedType
 
 open class MvvmActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity() {
@@ -30,6 +33,11 @@ open class MvvmActivity<VB : ViewBinding, VM : ViewModel> : AppCompatActivity() 
     open fun initViews() {
         mBinding = createViewBinding()
         setContentView(mBinding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
     }
 
     @CallSuper

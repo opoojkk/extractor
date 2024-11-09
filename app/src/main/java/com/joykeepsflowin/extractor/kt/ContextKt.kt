@@ -1,7 +1,11 @@
 package com.joykeepsflowin.extractor.kt
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.util.Log
+import androidx.annotation.StringRes
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -35,3 +39,13 @@ fun Context.extractInstalledAppApk(packageName: String, outputFilePath: String):
         return null
     }
 }
+
+inline fun <reified T : Activity> Context.startActivity(block: (Bundle.() -> Unit) = {}) {
+    startActivity(Intent(this, T::class.java).apply {
+        val bundle = Bundle()
+        block.invoke(bundle)
+        putExtras(bundle)
+    })
+}
+
+//fun Context.getString(@StringRes strRes: Int): String = resources.getString(strRes)
